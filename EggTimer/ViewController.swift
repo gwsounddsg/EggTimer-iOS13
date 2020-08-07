@@ -7,13 +7,21 @@
 //
 
 import UIKit
+import AVFoundation
+
+
+
+
 
 class ViewController: UIViewController {
     
-    let eggTime: [String: Float] = ["Soft": 300.0, "Medium": 420.0, "Hard": 720.0]
+    let eggTime: [String: Float] = ["Soft": 10.0, "Medium": 420.0, "Hard": 720.0]
+    let alarmURL = Bundle.main.url(forResource: "alarm_sound", withExtension: "mp3")!
+    
     var secondsRemaining: Float = 0.0
     var timer = Timer()
     var selectedCookTime: Float = 0.0
+    var player: AVAudioPlayer?
     
     @IBOutlet var label: UILabel!
     @IBOutlet var progressBar: UIProgressView!
@@ -43,6 +51,9 @@ class ViewController: UIViewController {
         else {
             label.text = "Done!"
             timer.invalidate()
+            
+            player = try? AVAudioPlayer(contentsOf: alarmURL)
+            player?.play()
         }
     }
 }
