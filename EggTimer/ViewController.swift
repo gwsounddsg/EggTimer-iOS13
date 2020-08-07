@@ -10,7 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    let eggTime: [String: Float] = ["Soft": 3.0, "Medium": 4.0, "Hard": 7.0]
+    let eggTime: [String: Float] = ["Soft": 300.0, "Medium": 420.0, "Hard": 720.0]
     var secondsRemaining: Float = 0.0
     var timer = Timer()
     var selectedCookTime: Float = 0.0
@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     
     @objc func updateTimer() {
         secondsRemaining -= 1
-        progressBar.progress = (selectedCookTime - secondsRemaining) / selectedCookTime
+        progressBar.setProgress((selectedCookTime - secondsRemaining) / selectedCookTime, animated: true)
         
         if secondsRemaining > 0 {
             print("\(secondsRemaining) seconds")
